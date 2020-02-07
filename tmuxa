@@ -1,0 +1,67 @@
+#!/bin/bash
+
+# Author: Kevin Kamer Meejach Petersen
+# Data: 24-10-2019
+# License: GPLv3
+
+# list tmux sessions
+list() {
+	nameList=$(tmux list-sessions | awk '{print $1}'  | sed -e 's/://g')
+	nameAttach=$(tmux list-sessions | awk '{print $1 $10}' )
+	nl=$(tmux list-sessions | wc -l)
+	clear
+	echo "there is" "$nl" "sessions:"
+	n=1
+	for i in $nameAttach
+	do
+		echo $n'.' "$i"
+		n=$((n + 1))
+	done
+	echo ""
+	echo $n". Create new"
+	read -rp "input:" "num"
+
+	case "$num" in
+		$n) createNew ;;
+		*) attach ;;
+	esac
+	}
+
+# Create new tmux session
+createNew() {
+	clear
+	read -rp "Input new tmux name sessions: " "newName"
+	if [ "$TMUX" ]
+	then
+		tmux new -s "$newName" -d
+		tmux switch-client -t "$newName"
+	fi
+	tmux new -s "$newName"
+}
+
+# we test if we are in a tmux session allready, else we just attach
+attach() {
+	if [ "$TMUX" ];
+	then
+		tmux switch-client -t "$(echo $nameList | cut -d " " -f"$num")"
+	else
+		tmux attach -t "$(echo $nameList | cut -d " " -f"$num")"
+	fi
+}
+
+# --------------------- The code starts here -------------------------
+while :
+do
+
+	if ( tmux list-sessions )
+	then
+		list
+		clear
+		break #Abandon the while lopp.
+	else
+		createNew
+		break
+	fi
+
+done
+
