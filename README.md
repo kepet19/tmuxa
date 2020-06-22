@@ -2,10 +2,11 @@
 This is a tmux wrapper writting in bash.
 tmux wrapper is good, for mannged tmux sessions. 
 
-# Missing features
+# Features
 - Support for spaces
+
+# Missing features
 - Missing deleting a tmux sesssion
-- Create new tmux session, should always be 1 maybe?
 
 # How to use
 ```
