@@ -114,7 +114,7 @@ fn list_sessions() -> Chosen {
         .parse()
         .expect("not a number");
     if chosen == 0 {
-        chosen = read_input("Which tmux session to delete expect a number: ")
+        chosen = read_input("Which tmux session to delete expects a number: ")
             .unwrap()
             .parse()
             .expect("not a number");
