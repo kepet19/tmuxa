@@ -122,7 +122,7 @@ fn list_sessions() -> Chosen {
             panic!("the chosing number is not valid");
         }
         Chosen::Delete(names.remove(chosen - 2))
-    } else if chosen == 1 || chosen > count {
+    } else if chosen == 1 || chosen > count + 1{
         Chosen::New
     } else {
         Chosen::Chosen(names.remove(chosen - 2))
