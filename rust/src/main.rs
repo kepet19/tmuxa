@@ -118,7 +118,7 @@ fn list_sessions() -> Chosen {
             .unwrap()
             .parse()
             .expect("not a number");
-        if chosen <= 2{
+        if chosen < 2{
             panic!("the chosing number is not valid");
         }
         Chosen::Delete(names.remove(chosen - 2))
