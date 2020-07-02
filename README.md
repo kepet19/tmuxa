@@ -11,9 +11,7 @@ cargo install --git https://github.com/kepet19/tmuxa.git
 # Features
 - Support for spaces
 - Create a tmux session
-
-# Missing features
-- Missing deleting a tmux sesssion
+- deleting a tmux sesssion
 
 # How to use
 ```
