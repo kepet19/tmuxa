@@ -13,12 +13,8 @@ cargo install --git https://github.com/kepet19/tmuxa.git
 - Create a tmux session
 - deleting a tmux sesssion
 
-# How to use
+# Use case preview of the rust version
 ```
 $ tmuxa
 ```
-then select by putting ind the number and pres enter
-![MenuTmuxa](screenshots/screenshot.png?raw=true)
-
-this is the new tmux session promt. you can type ind a name with space. 
-![MenuTmuxa](screenshots/screenshot_new_session.png?raw=true)<
+![MenuTmuxa](screenshots/show_tmuxa.gif)
