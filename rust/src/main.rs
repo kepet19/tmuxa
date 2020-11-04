@@ -38,7 +38,7 @@ fn delete_session(name: &str) {
 }
 
 fn create_new() {
-    let name = read_input("new session name: ").unwrap();
+    let name = read_input("\x1b[96mnew session name:> \x1b[m").unwrap();
 
     match std::env::var("TMUX") {
         Ok(_) => {
@@ -86,12 +86,12 @@ fn list_sessions() -> Chosen {
 
     let mut index = 0;
     if count > 0 {
-        println!("{}. Delete A tmux session", index);
+        println!("\x1b[1;31m{}. Delete A tmux session\x1b[m", index);
     }
     index += 1;
-    println!("{}. Create new", index);
+    println!("\x1b[96m{}. Create new\x1b[m", index);
     let mut names: Vec<String> = Vec::new();
-    println!("there are {} session(s)", count);
+    println!("\x1b[93mthere are {} session(s):\x1b[m", count);
 
     for session in sessions {
         index += 1;
@@ -103,19 +103,21 @@ fn list_sessions() -> Chosen {
         let attach = session.next().unwrap().trim();
         let attach: u8 = attach.parse().unwrap();
         if attach > 0 {
-            println!(" {}. {}, (attached)", index, name);
+            println!(" \x1b[34m{}. {}, \x1b[m\x1b[31m(attached\x1b[m)", index, name);
         } else {
-            println!(" {}. {}", index, name);
+            println!(" \x1b[34m{}. {}\x1b[m", index, name);
         }
         names.push(name);
     }
-    let mut chosen: usize = read_input("input: ")
+    let mut chosen: usize = read_input("> ")
         .unwrap()
+        .trim()
         .parse()
         .expect("not a number");
     if chosen == 0 {
-        chosen = read_input("Which tmux session to delete expects a number: ")
+        chosen = read_input("\x1b[1;31mWhich tmux session to delete expects a number: \x1b[m")
             .unwrap()
+            .trim()
             .parse()
             .expect("not a number");
         if chosen < 2{
