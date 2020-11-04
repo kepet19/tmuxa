@@ -103,7 +103,7 @@ fn list_sessions() -> Chosen {
         let attach = session.next().unwrap().trim();
         let attach: u8 = attach.parse().unwrap();
         if attach > 0 {
-            println!(" \x1b[34m{}. {}, \x1b[m\x1b[31m(attached\x1b[m)", index, name);
+            println!(" \x1b[34m{}. {}, \x1b[m\x1b[31m(attached)\x1b[m", index, name);
         } else {
             println!(" \x1b[34m{}. {}\x1b[m", index, name);
         }
